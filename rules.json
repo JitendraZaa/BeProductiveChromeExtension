@@ -1,9 +1,0 @@
-[
-    {
-      "id": "ruleset_1",
-      "priority": 1,
-      "action": { "type": "block" },
-      "condition": { "urlFilter": "youtube.com" }
-    }
-  ]
-  
