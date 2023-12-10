@@ -1,7 +1,19 @@
+const generateRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
 const generateSTYLES = () => {
+  const backgroundColor = generateRandomColor();
+  const cloudColor = generateRandomColor();
+
     return `<style>@import url(https://fonts.googleapis.com/css?family=opensans:500);
     body {
-      background: #33cc99;
+      background: ${backgroundColor};
       color: #fff;
       font-family: "Open Sans", sans-serif;
       max-height: 700px;
@@ -73,24 +85,21 @@ const generateSTYLES = () => {
       top: -0.75em;
       font-size: 2em;
       padding: 0 0.2em;
-      background: #33cc99;
+      background: ${backgroundColor};
     }
     
     .cloud {
       width: 350px;
       height: 120px;
-    
-      background: #fff;
-      background: linear-gradient(top, #fff 100%);
-      background: -webkit-linear-gradient(top, #fff 100%);
-      background: -moz-linear-gradient(top, #fff 100%);
-      background: -ms-linear-gradient(top, #fff 100%);
-      background: -o-linear-gradient(top, #fff 100%);
-    
+      background: ${cloudColor};
+      background: linear-gradient(top, ${cloudColor} 100%);
+      background: -webkit-linear-gradient(top, ${cloudColor} 100%);
+      background: -moz-linear-gradient(top, ${cloudColor} 100%);
+      background: -ms-linear-gradient(top, ${cloudColor} 100%);
+      background: -o-linear-gradient(top, ${cloudColor} 100%);
       border-radius: 100px;
       -webkit-border-radius: 100px;
       -moz-border-radius: 100px;
-    
       position: absolute;
       margin: 120px auto 20px;
       z-index: -1;
@@ -101,7 +110,7 @@ const generateSTYLES = () => {
     .cloud:before {
       content: "";
       position: absolute;
-      background: #fff;
+      background: ${cloudColor};
       z-index: -1;
     }
     
@@ -231,55 +240,56 @@ const generateSTYLES = () => {
      </style>`;
   };
   
-  const generateHTML = (pageName) => {
+  const generateRandomQuote = async () => {
+    try {
+      const response = await fetch('https://api.quotable.io/random');
+      const data = await response.json();
+      return data.content;
+    } catch (error) {
+      console.error('Error fetching quote:', error);
+      return 'Stay inspired!';
+    }
+  };
+
+  const generateHTML = async (pageName) => {
+    const inspiringThought = await generateRandomQuote();
+  
     return `
-     
-     <div id="clouds">
-        <div class="cloud x1"></div>
-        <div class="cloud x1_5"></div>
-        <div class="cloud x2"></div>
-        <div class="cloud x3"></div>
-        <div class="cloud x4"></div>
-        <div class="cloud x5"></div>
-    </div>
-    <div class='c'>
-        <div class='_404'> Blocked </div>
-        <p> </p> 
-        <hr>
-        <p> </p> 
-        <p> </p> 
-        <div class='_1'>GET BACK TO WORK. </div>  
-        <p> </p> 
-        <p> </p> 
-        <hr>
-        <div class='_2'>Work is more important than ${pageName}</div>
-    </div>
-     `;
+      <div class="overlay">
+        <div id="clouds">
+          <div class="cloud x1"></div>
+          <div class="cloud x1_5"></div>
+          <div class="cloud x2"></div>
+          <div class="cloud x3"></div>
+          <div class="cloud x4"></div>
+          <div class="cloud x5"></div>
+        </div>
+        <div class='c'>
+          <div class='_404'> Blocked </div>
+          <p> </p> 
+          <p> </p> 
+          <hr>
+          <div class='_1'> ${inspiringThought} </div>  
+          <p> </p> 
+          <hr>
+          <p> </p> 
+          <p> </p> 
+          <div class='_2'>Work is more important than ${pageName}</div> 
+        </div>
+      </div>`;
   };
   
-  switch (window.location.hostname) {
-    case "www.youtube.com":
-      document.head.innerHTML = generateSTYLES();
-      document.body.innerHTML = generateHTML("YOUTUBE");
-      break;
-    case "www.facebook.com":
-      document.head.innerHTML = generateSTYLES();
-      document.body.innerHTML = generateHTML("FACEBOOK");
-      break;
-    case "www.netflix.com":
-      document.head.innerHTML = generateSTYLES();
-      document.body.innerHTML = generateHTML("NETFLIX");
-      break;
-    case "www.roblox.com":
-      document.head.innerHTML = generateSTYLES();
-      document.body.innerHTML = generateHTML("ROBLOX");
-      break;
-    case "discord.com":
-      document.head.innerHTML = generateSTYLES();
-      document.body.innerHTML = generateHTML("DISCORD");
-      break;
-    case "www.spotify.com":
-      document.head.innerHTML = generateSTYLES();
-      document.body.innerHTML = generateHTML("SPOTIFY");
-      break;
-  }
+  const runExtension = async () => {
+    switch (window.location.hostname) {
+      case "www.youtube.com":
+      case "www.facebook.com":
+      case "www.netflix.com":
+      case "www.roblox.com":
+      case "discord.com":
+      case "www.spotify.com":
+        document.head.innerHTML = generateSTYLES();
+        document.body.innerHTML = await generateHTML(window.location.hostname);
+        break;
+    }
+  };
+  runExtension();
