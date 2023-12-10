@@ -37,10 +37,11 @@ const generateSTYLES = () => {
     ._1 {
       text-align: center;
       display: block;
-      position: relative;
-      letter-spacing: 12px;
+      position: relative; 
       font-size: 4em;
-      line-height: 80%;
+      line-height: 100%;
+      padding-top: 5%;
+      padding-bottom: 5%;
     }
     ._2 {
       text-align: center;
@@ -274,7 +275,7 @@ const generateSTYLES = () => {
           <hr>
           <p> </p> 
           <p> </p> 
-          <div class='_2'>Work is more important than ${pageName}</div> 
+          <div class='_2'>Blocked : ${pageName} , By JZ</div> 
         </div>
       </div>`;
   };
