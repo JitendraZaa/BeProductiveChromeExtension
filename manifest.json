@@ -15,9 +15,7 @@
       "default_popup": "Popup.html",
       "default_title": "Website Blocker"
     },
-    "permissions": [
-      "https://www.youtube.com/*",
-      "https://www.facebook.com/*",
-      "https://www.netflix.com/*"
+    "permissions": [ 
+      "storage"
     ]
   }
