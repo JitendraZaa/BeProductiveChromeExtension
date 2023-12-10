@@ -15,8 +15,12 @@
       "default_popup": "Popup.html",
       "default_title": "Website Blocker"
     },
-    "permissions": [ 
-      "storage",
-      "activeTab"
+    "permissions": [
+      "storage",  
+      "activeTab",  
+      "webNavigation",  
+      "https://api.quotable.io/",  
+      "storage",  
+      "tabs" 
     ]
   }

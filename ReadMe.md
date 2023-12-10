@@ -16,3 +16,6 @@
 1. Open `background.js` file
 1. Add or remove the website from the `runExtension` method
 1. go to `chrome://extensions/` and click on `Update` button
+
+## Known Issue / Work In Progress
+1. Able to use IndexDB to store the list of websites to block in extension popup however unable to access it in background.js
