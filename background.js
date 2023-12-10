@@ -213,6 +213,10 @@ const generateSTYLES = () => {
       -moz-animation: moveclouds 20s linear infinite;
       -o-animation: moveclouds 20s linear infinite;
     }
+
+    .author{
+      font-size: 0.5em;
+    }
     
     @-webkit-keyframes moveclouds {
       0% {
@@ -245,7 +249,7 @@ const generateSTYLES = () => {
     try {
       const response = await fetch('https://api.quotable.io/random');
       const data = await response.json();
-      return data.content;
+      return `${data.content} <span class="author"> ${data.author}</span>`;
     } catch (error) {
       console.error('Error fetching quote:', error);
       return 'Stay inspired!';

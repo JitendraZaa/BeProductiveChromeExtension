@@ -16,6 +16,7 @@
       "default_title": "Website Blocker"
     },
     "permissions": [ 
-      "storage"
+      "storage",
+      "activeTab"
     ]
   }
