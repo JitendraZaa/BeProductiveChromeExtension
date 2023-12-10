@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Website Blocker",
     "version": "0.1.1",
     "content_scripts": [
@@ -11,15 +11,14 @@
     "icons": {
         "48": "icons/icon48.png", 
         "128": "icons/icon128.png" },
-    "browser_action": {
+    "action": {
       "default_popup": "Popup.html",
       "default_title": "Website Blocker"
     },
     "permissions": [
       "storage",  
       "activeTab",  
-      "webNavigation",  
-      "https://api.quotable.io/",  
+      "webNavigation",   
       "storage",  
       "tabs" 
     ]

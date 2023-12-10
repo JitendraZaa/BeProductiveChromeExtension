@@ -13,7 +13,7 @@ const generateSTYLES = () => {
 
     return `<style>@import url(https://fonts.googleapis.com/css?family=opensans:500);
     body {
-      background: ${backgroundColor};
+      background:  ${backgroundColor} !important;
       color: #fff;
       font-family: "Open Sans", sans-serif;
       max-height: 700px;
@@ -270,31 +270,37 @@ const generateSTYLES = () => {
           <div class="cloud x5"></div>
         </div>
         <div class='c'>
-          <div class='_404'> Blocked </div>
-          <p> </p> 
-          <p> </p> 
+          <div class='_404'> Blocked </div> 
           <hr>
           <div class='_1'> ${inspiringThought} </div>  
           <p> </p> 
-          <hr>
-          <p> </p> 
-          <p> </p> 
+          <hr> 
           <div class='_2'>Blocked : ${pageName} , By Jitendra Zaa</div> 
         </div>
       </div>`;
   };
-  
+   
+
   const runExtension = async () => {
-    switch (window.location.hostname) {
-      case "www.youtube.com":
-      case "www.facebook.com":
-      case "www.netflix.com":
-      case "www.roblox.com":
-      case "discord.com":
-      case "www.spotify.com":
+    const url = window.location.href.toLowerCase();
+  
+    const websites = {
+      "facebook": "www.facebook.com",
+      "twitter": "twitter",
+      // Add more websites and their corresponding values as needed
+    };
+  
+    for (const keyword in websites) {
+      if (url.includes(keyword)) {
         document.head.innerHTML = generateSTYLES();
-        document.body.innerHTML = await generateHTML(window.location.hostname);
-        break;
-    }
+        document.body.innerHTML = await generateHTML(websites[keyword]);
+        return; // Exit the loop if a match is found
+      }
+    } 
+    // If no match is found, you can add a default behavior here
+    console.log("No matching website found in the URL to block.");
   };
+  
+  // Example usage
   runExtension();
+  
