@@ -1,5 +1,10 @@
 # Chrome Extension to improve productivity
 
+## What it does
+1. Blocks websites that you want to avoid
+1. Shows a motivational quote every time you open a new tab
+
+
 ## How to use it
 1. Download this code in a folder
 1. Open Chrome and go to `chrome://extensions/`

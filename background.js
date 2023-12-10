@@ -275,7 +275,7 @@ const generateSTYLES = () => {
           <hr>
           <p> </p> 
           <p> </p> 
-          <div class='_2'>Blocked : ${pageName} , By JZ</div> 
+          <div class='_2'>Blocked : ${pageName} , By Jitendra Zaa</div> 
         </div>
       </div>`;
   };
